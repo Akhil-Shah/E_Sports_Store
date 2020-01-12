@@ -1,0 +1,5 @@
+<ul>
+    {% for each in game_names %}
+        <a href="{{each.get_absolute_url}}"><li>{{each.name}}</li></a>
+    {% endfor %}  
+</ul>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1>
+    Item View
+</h1>
+
+<ul>
+    {% for each in item_names %}
+        <li>{{each.name}}</li>
+    {% endfor %}   
+</ul>
+
+{% endblock %}
+    

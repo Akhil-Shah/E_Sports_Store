@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    
+<h1>
+    Team View
+</h1>
+
+<ul>
+    {% for each in team_names %}
+        <a href="{{each.get_absolute_url}}"><li>{{each.name}}</li></a>
+    {% endfor %}  
+</ul>
+
+{% endblock %}

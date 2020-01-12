@@ -1,0 +1,21 @@
+from django.db import models
+
+from django.urls import reverse
+# Create your models here.
+
+class Game(models.Model):
+    name = models.CharField(max_length=10,null=False,blank=False)
+
+    def get_absolute_url(self):
+        return reverse('product:team_names', kwargs={'name': self.name})
+    
+class Team(models.Model):
+    name = models.CharField(max_length=10,null=False,blank=False)
+    game = models.ForeignKey(Game,on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse('product:item_names', kwargs={'name': self.name})
+
+class Item(models.Model):
+    name = models.CharField(max_length=10,null=False,blank=False)
+    team = models.ForeignKey(Team,on_delete=models.CASCADE)
