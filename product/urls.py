@@ -8,7 +8,7 @@ from .views import(
 
 app_name = 'product'
 urlpatterns = [
-    path('games/', GameView.as_view()),
+    path('games/', GameView.as_view(), name='index'),
     path('<name>/teams/', TeamView.as_view(), name='team_names'),
     path('<name>/items/', ItemView.as_view(), name='item_names'),
 ]

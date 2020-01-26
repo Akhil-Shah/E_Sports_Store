@@ -1,17 +1,61 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 
-<h1>
-    Item View
-</h1>
+<br>
+<br>
 
-<ul>
-    {% for each in item_names %}
-        <li>{{each.name}}</li>
-    {% endfor %}   
-</ul>
+<!--Grid row-->
+<div class="row wow fadeIn">
+
+{% for each in item_names %}
+
+    <!--Grid column-->
+    <div style="margin-left:30px;">
+
+    <!--Card-->
+    <div class="card" style="height:300px;width:250px;">
+
+        <!--Card image-->
+        <div class="view overlay">
+        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
+            alt="">
+        <a>
+            <div class="mask rgba-white-slight"></div>
+        </a>
+        </div>
+        <!--Card image-->
+
+        <!--Card content-->
+        <div class="card-body text-center">
+        <!--Category & Title-->
+        <a href="" class="grey-text">
+            <h5>Shirt</h5>
+        </a>
+        <h5>
+            <strong>
+            <a href="" class="dark-grey-text">{{each.name}}
+                <span class="badge badge-pill danger-color">NEW</span>
+            </a>
+            </strong>
+        </h5>
+
+        <h4 class="font-weight-bold blue-text">
+            <strong>120$</strong>
+        </h4>
+
+        </div>
+        <!--Card content-->
+
+    </div>
+    <!--Card-->
+
+    </div>
+    <!--Grid column-->
+
+{% endfor %} 
+
+</div>
 
 {% endblock %}
     

@@ -12,7 +12,7 @@ from .models import (
 class GameView(View):
     
     def get(self,request):
-        return render(request,'games.html',{})
+        return render(request,'home.html',{})
 
 class TeamView(View):
     
