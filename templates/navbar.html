@@ -29,11 +29,18 @@
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
           <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'cart:shipping' %}">
+              <span class="clearfix d-none d-sm-inline-block"> Edit Shipping Details </span>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link waves-effect" href="{% url 'cart:cart' %}">
               <i class="fas fa-shopping-cart"></i>
               <span class="clearfix d-none d-sm-inline-block"> Cart </span>
             </a>
           </li>
+        </ul>
           
       </div>
 

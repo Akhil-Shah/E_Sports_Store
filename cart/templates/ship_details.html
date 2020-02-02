@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<br>
+
+<div style="padding:30px;">
+
+<div style="border-style:groove;padding:10px;">
+
+<h2> Current Shipping Details </h2>
+
+<ul>
+{% for each in details %}
+    <li>{{each}}</li>
+{% endfor %}
+</ul>
+
+</div>
+
+<br>
+
+<div style="border-style:groove;padding:10px;">
+
+<h2> Edit Shipping Details </h2>
+
+<div style="margin-left:25px;">
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_ul }}
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+{{ status }}
+
+{% endblock %}
+    
