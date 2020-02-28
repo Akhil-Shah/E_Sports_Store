@@ -8,10 +8,25 @@
 
 <h1> Cart App </h1>
 
+<br><br>
 
-{% for each in test %}
-    <h1>{{each.name}}</h1>
+
+{% for each in item_list %}
+    <h1>{{each.name}}
+        <span class="badge badge-pill">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden", name="item_id", value="{{each.id}}">
+                <button>Remove</button>
+            </form>
+        </span>
+    </h1>
 {% endfor %}
+
+
+<br><br><br><br><br>
+
+{{form.render}}
     
 
 {% endblock %}

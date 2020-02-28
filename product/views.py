@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_list_or_404, get_object_or_404
+from django.shortcuts import render, get_list_or_404, get_object_or_404, redirect
 from django.views import View
 
 from .models import (
@@ -40,4 +40,16 @@ class ItemView(View):
 
         return render(request,'items.html',context)
 
+    def post(self,request,name):
 
+        item_id = request.POST.get('item_id')
+
+        if 'cart_details' not in request.session:
+            request.session['cart_details'] = [item_id]
+        else:
+            saved_list = request.session['cart_details']
+            saved_list.append(item_id)
+            request.session['cart_details'] = saved_list
+
+        return redirect('cart:cart')
+        
