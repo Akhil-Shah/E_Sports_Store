@@ -1,28 +1,34 @@
 from product.models import Game,Team,Item
 
+hat_url = 'https://cdn.shopify.com/s/files/1/0264/4583/products/mX5wbOljShW7hRot9rNa_difuzed_0004_Ebene_6_360x.jpg?v=1582026119'
+shirt_url = 'https://cdn.shopify.com/s/files/1/0264/4583/products/214rQfdQTiqeQuxTaNCQ_ESL307_1_360x.jpg?v=1582890895'
+hoodie_url = 'https://cdn.shopify.com/s/files/1/0264/4583/products/TmSFGhDdSUqEnxFHKvCj_ESL269-front_360x.jpg?v=1582026295'
+scarf_url = 'https://cdn.shopify.com/s/files/1/0264/4583/products/NLMPHVNQhm2taSd5TNqw_AST125-4_360x.jpg?v=1582037570'
+jacket_url = 'https://cdn.shopify.com/s/files/1/0264/4583/products/WujvmZxJTKmJfEoxKKd2_ESL254-front_360x.jpg?v=1582031880'
+
 product_db = {
 
-    'Game 1': {
-        'Team 1' : {
-            'Items' : [['Item 1'], ['Item 2'], ['Item 3']]
+    'Fortnite': {
+        'Team Liquid' : {
+            'Items' : [['Hat',50,hat_url], ['Shirt',30,shirt_url], ['Jacket',20,jacket_url]]
         },
 
-        'Team 2' : {
-            'Items' : [['Item 1'], ['Item 2'], ['Item 3']]
+        'Fnatic' : {
+            'Items' : [['Shirt',60,shirt_url], ['Scarf',50,scarf_url], ['Cap',10,hat_url]]
         },
 
-        'Team 3' : {
-            'Items' : [['Item 1'], ['Item 2'], ['Item 3']]
+        'NRG Esports' : {
+            'Items' : [['Hoodie',40,hoodie_url], ['Jacket',20,jacket_url], ['Hat',10,hat_url]]
         },
     },
 
-    'Game 2': {
-        'Team 4' : {
-            'Items' : [['Item 1'], ['Item 2'], ['Item 3']]
+    'CS:GO': {
+        'Astralis' : {
+            'Items' : [['Shirt',70,shirt_url], ['Shirt',50,shirt_url], ['Hat',30,hat_url]]
         },
 
-        'Team 5' : {
-            'Items' : [['Item 1'], ['Item 2'], ['Item 3']]
+        'MiBR' : {
+            'Items' : [['Jacket',40,jacket_url], ['Scarf',40,scarf_url], ['Cap',10,hat_url]]
         },
     },
 
@@ -42,5 +48,5 @@ for game_name, game_values in product_db.items():
         
         for array in team_values.values():
             for each_item in array:
-                for item_name in each_item:
-                    Item.objects.create(name=item_name,team=team_obj)
+                Item.objects.create(name=each_item[0],price=each_item[1],
+                                    img_url=each_item[2],team=team_obj)

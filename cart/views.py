@@ -37,10 +37,13 @@ class CartView(View):
         else:
             cart = request.session['cart_details']
             item_list = []
+            total_price = 0
             for item_id in cart:
 
                 item_obj = Item.objects.get(pk=item_id)
                 item_list.append(item_obj)
+
+                total_price = total_price + item_obj.price
      
 
         item_names = ""
@@ -50,7 +53,7 @@ class CartView(View):
         host = request.get_host()
         paypal_dict = {
             'business': settings.PAYPAL_RECEIVER_EMAIL,
-            'amount': '500',
+            'amount': str(total_price),
             'item_name': item_names,
             'currency_code': 'USD',
             'notify_url': 'http://{}{}'.format(host,
@@ -65,6 +68,7 @@ class CartView(View):
 
         context = {
             'item_list':item_list,
+            'total_price':total_price,
             'form':form
         }
  
@@ -90,7 +94,7 @@ class ShipView(View):
             for key,value in request.session['ship_details'].items():
                 details.append("{} - {}".format(key,value))
         except:
-            details = "No information Added"
+            details = ["No information Added"]
 
         context = {
             'form':form,

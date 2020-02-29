@@ -6,27 +6,73 @@
 <br>
 <br>
 
-<h1> Cart App </h1>
+<h1 style="margin-left:10px;"> Total Price -  {{total_price}} $ </h1>
+
+<br>
+
+<!--Grid row-->
+<div class="row wow fadeIn">
+
+{% for each in item_list %}
+
+    <!--Grid column-->
+    <div style="margin-left:30px;">
+
+    <!--Card-->
+    <div class="card" style="height:350px;width:250px;">
+
+        <!--Card image-->
+        <div class="view overlay">
+        <img src={{each.img_url}} class="card-img-top"
+            alt="">
+        <a>
+            <div class="mask rgba-white-slight"></div>
+        </a>
+        </div>
+        <!--Card image-->
+
+        <!--Card content-->
+        <div class="card-body text-center">
+        <!--Category & Title-->
+        <a href="" class="dark-grey-text">
+            <h5>{{each.name}}</h5>
+        </a>
+        <h5>
+            <strong>
+            <a href="" class="dark-grey-text">
+                <h4 class="font-weight-bold blue-text">
+                    <strong>{{each.price}}$</strong>
+                </h4>
+                <span class="badge badge-pill badge-danger">
+                    <form method='POST'>
+                        {% csrf_token %}
+                        <input type="hidden", name="item_id", value="{{each.id}}">
+                        <button style="color:white;background-color:transparent;border:none;">Remove</button>
+                    </form>
+                </span>
+            </a>
+            </strong>
+        </h5>
+
+
+
+        </div>
+        <!--Card content-->
+
+    </div>
+    <!--Card-->
+
+    </div>
+    <!--Grid column-->
+
+{% endfor %} 
+    
+</div>
+
 
 <br><br>
 
-
-{% for each in item_list %}
-    <h1>{{each.name}}
-        <span class="badge badge-pill">
-            <form method="POST">
-                {% csrf_token %}
-                <input type="hidden", name="item_id", value="{{each.id}}">
-                <button>Remove</button>
-            </form>
-        </span>
-    </h1>
-{% endfor %}
-
-
-<br><br><br><br><br>
-
-{{form.render}}
+<center>{{form.render}}</center>
     
 
 {% endblock %}

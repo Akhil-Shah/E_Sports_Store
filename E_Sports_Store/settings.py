@@ -130,5 +130,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
 
-PAYPAL_RECEIVER_EMAIL = 'abcd@gmail.com'
+PAYPAL_RECEIVER_EMAIL = 'ESportsStore@gmail.com'
 PAYPAL_TEST = True

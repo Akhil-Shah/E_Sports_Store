@@ -18,4 +18,6 @@ class Team(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=10,null=False,blank=False)
+    price = models.IntegerField(default=50)
+    img_url = models.CharField(default="",max_length=100)
     team = models.ForeignKey(Team,on_delete=models.CASCADE)

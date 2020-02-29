@@ -14,11 +14,11 @@
     <div style="margin-left:30px;">
 
     <!--Card-->
-    <div class="card" style="height:300px;width:250px;">
+    <div class="card" style="height:350px;width:250px;">
 
         <!--Card image-->
         <div class="view overlay">
-        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
+        <img src={{each.img_url}} class="card-img-top"
             alt="">
         <a>
             <div class="mask rgba-white-slight"></div>
@@ -28,19 +28,22 @@
 
         <!--Card content-->
         <div class="card-body text-center">
-        <!--Category & Title-->
-        <a href="" class="grey-text">
-            <h5>Shirt</h5>
-        </a>
+            <!--Category & Title-->
+            <a href="" class="dark-grey-text">
+                <h5>{{each.name}}</h5>
+            </a>
         <h5>
             <strong>
-            <a href="" class="dark-grey-text">{{each.name}}
-                <span class="badge badge-pill">
+            <a href="" class="dark-grey-text">
+                <h4 class="font-weight-bold blue-text">
+                    <strong>120$</strong>
+                </h4>
+                <span class="badge badge-pill badge-primary">
                     <form method='POST'>
                         {% csrf_token %}
                         <input type="hidden" name="team_id" value="{{each.team.id}}" />
                         <input type="hidden" name="item_id" value="{{each.id}}" />
-                        <button>Add to Cart</button>
+                        <button style="color:white;background-color:transparent;border:none;">Add to Cart</button>
                     </form>
                 </span>
 
@@ -48,9 +51,6 @@
             </strong>
         </h5>
 
-        <h4 class="font-weight-bold blue-text">
-            <strong>120$</strong>
-        </h4>
 
         </div>
         <!--Card content-->
