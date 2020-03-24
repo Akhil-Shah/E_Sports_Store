@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<br>
+
+<div style="padding:30px;">
+
+<br>
+
+<h2> Enter Feedback </h2> <br>
+
+<div style="border-style:groove;padding:10px;">
+
+<div style="margin-left:25px;">
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_ul }}
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+{{ status }}
+
+{% endblock %}
+    

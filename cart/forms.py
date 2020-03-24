@@ -1,5 +1,7 @@
 from django import forms
 
+from .models import Feedback
+
 class ShippingForm(forms.Form):
 
     country_choice = [
@@ -27,6 +29,19 @@ class ShippingForm(forms.Form):
     zip_code = forms.CharField()
     card_choices = [('1', 'Credit Card'), ('2', 'Debit Card')]
     choice_field = forms.ChoiceField(label="Payment Choice",choices=card_choices, widget=forms.RadioSelect)
+
+
+class FeedbackForm(forms.ModelForm):
+
+    product_id = forms.CharField()
+    email = forms.EmailField()
+    phone = forms.IntegerField()
+    feedback = forms.CharField(widget=forms.Textarea(attrs={"rows":5, "cols":25}))
+
+    class Meta:
+        model = Feedback
+        fields = ['product_id', 'email', 'phone', 'feedback']
+
 
     
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404 ,get_list_or_404, reverse, redirect
 from django.views import View
 
-from .forms import ShippingForm
+from .forms import ShippingForm, FeedbackForm
 
 from django.http import HttpResponse 
 
@@ -126,4 +126,28 @@ class ShipView(View):
         return render(request,'ship_details.html',context)
 
 
-        
+
+
+class FeedView(View):
+
+    def get(self, request):
+        form = FeedbackForm()
+
+        context = {
+            'form':form
+        }
+
+        return render(request,'feedback.html',context)
+
+    def post(self,request):
+        form = FeedbackForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            form = FeedbackForm()
+
+        context = {
+            'form':form
+        }
+
+        return render(request,'feedback.html',context)
