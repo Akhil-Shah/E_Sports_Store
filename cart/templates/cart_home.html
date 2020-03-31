@@ -6,6 +6,11 @@
 <br>
 <br>
 
+{% if status == 'No items' %}
+    <h1>No Items In Cart</h1>
+
+{% else %}
+
 <h1 style="margin-left:10px;"> Total Price -  {{total_price}} $ </h1>
 
 <br>
@@ -74,6 +79,7 @@
 
 <center>{{form.render}}</center>
     
+{% endif %}
 
 {% endblock %}
     

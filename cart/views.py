@@ -11,12 +11,17 @@ from product.models import (
     Item,
 )
 
+from after_sale.models import (
+    ShippingAddress,
+    ShippingProducts,
+)
+
 from django.conf import settings
 from decimal import Decimal
 from paypal.standard.forms import PayPalPaymentsForm
 from django.views.decorators.csrf import csrf_exempt
 
-
+import uuid
 # Create your views here.
 
 @csrf_exempt
@@ -26,14 +31,19 @@ def payment_done(request):
  
 @csrf_exempt
 def payment_canceled(request):
-    return render(request, 'payment_cancelled.html')
+    return redirect('after_sale:receipt')
 
 class CartView(View):
     
     def get(self,request):
 
+        if 'ship_details' not in request.session:
+            return redirect('cart:shipping')
+
         if 'cart_details' not in request.session:
-            print("Nothing")
+            context = {
+                'status':'No items'
+            }
         else:
             cart = request.session['cart_details']
             item_list = []
@@ -46,31 +56,31 @@ class CartView(View):
                 total_price = total_price + item_obj.price
      
 
-        item_names = ""
-        for each in item_list:
-            item_names = item_names + each.name + " "
+            item_names = ""
+            for each in item_list:
+                item_names = item_names + each.name + " "
 
-        host = request.get_host()
-        paypal_dict = {
-            'business': settings.PAYPAL_RECEIVER_EMAIL,
-            'amount': str(total_price),
-            'item_name': item_names,
-            'currency_code': 'USD',
-            'notify_url': 'http://{}{}'.format(host,
-                                            reverse('paypal-ipn')),
-            'return_url': 'http://{}{}'.format(host,
-                                            reverse('cart:done')),
-            'cancel_return': 'http://{}{}'.format(host,
-                                            reverse('cart:cancelled')),
-        }
+            host = request.get_host()
+            paypal_dict = {
+                'business': settings.PAYPAL_RECEIVER_EMAIL,
+                'amount': str(total_price),
+                'item_name': item_names,
+                'currency_code': 'USD',
+                'notify_url': 'http://{}{}'.format(host,
+                                                reverse('paypal-ipn')),
+                'return_url': 'http://{}{}'.format(host,
+                                                reverse('cart:done')),
+                'cancel_return': 'http://{}{}'.format(host,
+                                                reverse('cart:cancelled')),
+            }
 
-        form = PayPalPaymentsForm(initial=paypal_dict)
+            form = PayPalPaymentsForm(initial=paypal_dict)
 
-        context = {
-            'item_list':item_list,
-            'total_price':total_price,
-            'form':form
-        }
+            context = {
+                'item_list':item_list,
+                'total_price':total_price,
+                'form':form
+            }
  
         return render(request,'cart_home.html',context)
 
@@ -124,8 +134,6 @@ class ShipView(View):
         }
 
         return render(request,'ship_details.html',context)
-
-
 
 
 class FeedView(View):

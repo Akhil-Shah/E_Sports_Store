@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ 
+<br>
+<br>
+
+<center>
+<div class="card" style="width:500px;">
+    <div class="card-body" style="text-align: left;">
+        <h5 class="card-title">Payment Receipt (UID: {{uid}})</h5>
+        <p class="card-text">List of Items ( {{price}} $ )</p>
+
+        <ul>
+            {% for each in item_list %}
+                <li> {{each.name}} - {{each.price}} $ </li>
+            {% endfor %}
+        </ul>
+
+        <p class="card-text">Your Shiping Details</p>
+
+        
+        <ul>
+            {% for each in ship_details %}
+                <li> {{each}} </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'product:index' %}" class="btn btn-primary">Home</a>
+    </div>
+</div>
+</center>
+
+{% endblock %}

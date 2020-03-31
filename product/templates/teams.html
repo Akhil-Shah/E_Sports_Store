@@ -4,16 +4,31 @@
 
 {% for each in team_names %}
 
-<div class="jumbotron", style="margin-bottom: 0%;">
+<head>
+
+  <style>
+     #backgroundImage {
+          background-image: url({{back_img}});
+          background-repeat: no-repeat;
+          background-size:cover;
+          backdrop-filter: opacity(0.7);
+      }
+
+  </style>
+
+</head>
+
+<body id='backgroundImage'>
+
+<div class="jumbotron", style="margin-bottom: 0%;background-color:transparent;">
     <h5>
         <strong>
-          <a href="{{each.get_absolute_url}}" class="dark-grey-text"> {{each.name}} </a>
+          <a href="{{each.get_absolute_url}}" class='white-text'> {{each.name}} </a>
         </strong>
     </h5>
-    <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive,
-    mobile-first projects on the web.</p>
 </div>
 
+</body>
 {% endfor %}
 
 {% endblock %}

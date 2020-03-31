@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<br>
+<br>
+
+<div style="padding:30px;">
+
+<h1>Track Order</h1>
+
+<form method="post">
+    {% csrf_token %}
+    Enter Purchase ID : <input type="text" name="UID" style="width:300px;">
+    <button type="submit" name="order_status" class="btn btn-primary"> Go </button> 
+</form>
+
+<p>{{order_status}}</p>
+
+<ul>
+{% for each in item_list %}
+    <li>{{each.name}} - {{each.price}} $ </li>
+{% endfor %}
+</ul>
+
+
+{% if total_price != "" %}
+Total Price = {{total_price}} $
+{% endif %}
+    
+    
+
+<br><br><br>
+
+<h1>Cancel Order</h1>
+
+<form method="post">
+    {% csrf_token %}
+    Enter Purchase ID : <input type="text" name="UID" style="width:300px;">
+    <button type="submit" name="cancel_order" class="btn btn-primary"> Go </button> 
+</form>
+
+{{cancel_order}}
+
+</div>
+
+{% endblock %}

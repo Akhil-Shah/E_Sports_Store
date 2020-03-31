@@ -42,7 +42,8 @@ INSTALLED_APPS = [
 
     #Own
     'product',
-    'cart'
+    'cart',
+    'after_sale'
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,11 @@ STATICFILES_DIRS = [
 
 PAYPAL_RECEIVER_EMAIL = 'ESportsStore@gmail.com'
 PAYPAL_TEST = True
+
+#SendGrid Settings
+
+EMAIL_HOST = ''
+EMAIL_PORT = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True

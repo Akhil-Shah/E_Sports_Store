@@ -14,15 +14,21 @@ class GameView(View):
     def get(self,request):
         return render(request,'home.html',{})
 
+class YTView(View):
+    def get(self, request):
+        return render(request, 'yt.html',{})
+
 class TeamView(View):
     
     def get(self,request,name):
 
+        back_img = get_object_or_404(Game,name=name).back_img_url
         game_id = get_object_or_404(Game,name=name).id
         team_names = get_list_or_404(Team,game=game_id)
 
         context = {
-            'team_names':team_names
+            'team_names':team_names,
+            'back_img':back_img
         }
   
         return render(request,'teams.html',context)
@@ -51,5 +57,5 @@ class ItemView(View):
             saved_list.append(item_id)
             request.session['cart_details'] = saved_list
 
-        return redirect('cart:cart')
+        return redirect(self.request.path_info)
         

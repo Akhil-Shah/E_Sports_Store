@@ -22,12 +22,24 @@
           <li class="nav-item">
             <a class="nav-link waves-effect" href="{{each.get_absolute_url}}">{{each.name}}</a>
           </li>
-          {% endfor %} 
+          {% endfor %}
+          
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="/yt">Live
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
           
         </ul>
 
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'after_sale:help' %}">
+              <span class="clearfix d-none d-sm-inline-block"> Help </span>
+            </a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link waves-effect" href="{% url 'cart:feedback' %}">
               <span class="clearfix d-none d-sm-inline-block"> Feedback </span>
@@ -44,6 +56,7 @@
             <a class="nav-link waves-effect" href="{% url 'cart:cart' %}">
               <i class="fas fa-shopping-cart"></i>
               <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+              <b><strong class="red-text">{{no_of_items}}</strong></b>
             </a>
           </li>
         </ul>

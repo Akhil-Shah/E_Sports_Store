@@ -5,6 +5,7 @@ from django.urls import reverse
 
 class Game(models.Model):
     name = models.CharField(max_length=10,null=False,blank=False)
+    back_img_url = models.CharField(default="",max_length=100)
 
     def get_absolute_url(self):
         return reverse('product:team_names', kwargs={'name': self.name})

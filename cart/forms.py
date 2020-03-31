@@ -33,14 +33,14 @@ class ShippingForm(forms.Form):
 
 class FeedbackForm(forms.ModelForm):
 
-    product_id = forms.CharField()
+    purchase_id = forms.UUIDField()
     email = forms.EmailField()
     phone = forms.IntegerField()
     feedback = forms.CharField(widget=forms.Textarea(attrs={"rows":5, "cols":25}))
 
     class Meta:
         model = Feedback
-        fields = ['product_id', 'email', 'phone', 'feedback']
+        fields = ['purchase_id', 'email', 'phone', 'feedback']
 
 
     
